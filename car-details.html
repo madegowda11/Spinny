@@ -1,0 +1,2277 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+          content="Carivo - Buy quality inspected used cars">
+
+    <title>Carivo - Used Cars</title>
+
+    <!-- Bootstrap -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet">
+
+    <!-- Bootstrap Icons -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+        rel="stylesheet">
+
+    <!-- Google Font -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Carivo CSS -->
+    <link rel="stylesheet" href="css/car-details.css">
+</head>
+
+<body>
+
+<!-- =====================================================
+     NAVBAR
+===================================================== -->
+
+<nav class="navbar navbar-expand-lg carivo-navbar">
+
+    <div class="container">
+
+        <a class="navbar-brand" href="car-details.html">
+            Car<span>ivo</span>
+        </a>
+
+        <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#carivoNavbar">
+
+            <i class="bi bi-list"></i>
+
+        </button>
+
+        <div
+            class="collapse navbar-collapse"
+            id="carivoNavbar">
+
+            <ul class="navbar-nav ms-auto align-items-lg-center">
+
+                <li class="nav-item">
+                    <a class="nav-link active"
+                       href="#cars">
+                        Cars
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link"
+                       href="#finance">
+                        Finance
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link"
+                       href="#about">
+                        About
+                    </a>
+                </li>
+
+                <li class="nav-item ms-lg-2">
+                    <a class="nav-link"
+                       href="login.html">
+                        <i class="bi bi-person-circle me-1"></i>
+                        Login
+                    </a>
+                </li>
+
+            </ul>
+
+        </div>
+
+    </div>
+
+</nav>
+
+
+<!-- =====================================================
+     SEARCH SECTION
+===================================================== -->
+
+<section class="car-search-section" id="cars">
+
+    <div class="container search-content">
+
+        <div class="mb-4">
+
+            <h1 class="search-heading">
+                Find your next
+                <span>perfect car.</span>
+            </h1>
+
+            <p class="search-subtitle">
+                Explore quality inspected used cars from Carivo.
+                Search by name, choose a model and find the right car
+                for your budget.
+            </p>
+
+        </div>
+
+
+        <!-- SEARCH PANEL -->
+
+        <div class="search-panel">
+
+            <div class="search-panel-inner">
+
+                <!-- Search -->
+
+                <div class="search-input-wrapper">
+
+                    <i class="bi bi-search"></i>
+
+                    <input
+                        type="text"
+                        id="carSearchInput"
+                        class="search-input"
+                        placeholder="Search car name or brand...">
+
+                </div>
+
+
+                <!-- Model -->
+
+                <select
+                    id="modelSelect"
+                    class="search-select">
+
+                    <option value="">
+                        All Models
+                    </option>
+
+                </select>
+
+
+                <!-- Fuel -->
+
+                <select
+                    id="fuelSelect"
+                    class="search-select">
+
+                    <option value="">
+                        All Fuel Types
+                    </option>
+
+                    <option value="Petrol">
+                        Petrol
+                    </option>
+
+                    <option value="Diesel">
+                        Diesel
+                    </option>
+
+                </select>
+
+
+                <!-- Search Button -->
+
+                <button
+                    type="button"
+                    id="searchButton"
+                    class="search-button">
+
+                    <i class="bi bi-search me-1"></i>
+                    Search
+
+                </button>
+
+
+                <!-- Clear -->
+
+                <button
+                    type="button"
+                    id="clearSearch"
+                    class="clear-search-button">
+
+                    Clear
+
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- RESULT INFO -->
+
+        <div class="search-result-bar">
+
+            <div
+                id="searchResultsMessage"
+                class="search-result-message">
+
+                Showing all available cars
+
+            </div>
+
+            <div
+                id="carCount"
+                class="car-count">
+
+                0 Cars
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     CAR LIST
+===================================================== -->
+
+<section class="car-list-section">
+
+    <div class="container">
+
+        <div>
+
+            <h2 class="section-heading">
+                Available Cars
+            </h2>
+
+            <p class="section-description">
+                Choose from our collection of inspected used cars.
+            </p>
+
+        </div>
+
+
+        <!-- JS inserts car cards here -->
+
+        <div
+            id="carListContainer"
+            class="car-list-grid">
+        </div>
+
+
+        <!-- NO RESULTS -->
+
+        <div
+            id="noResults"
+            class="no-results d-none">
+
+            <i class="bi bi-car-front"></i>
+
+            <h3>
+                No cars found
+            </h3>
+
+            <p>
+                Try another car name, model or fuel type.
+            </p>
+
+            <button
+                type="button"
+                class="search-button mt-3"
+                onclick="clearCarSearch()">
+
+                View All Cars
+
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     CAR DETAILS
+===================================================== -->
+
+<section
+    id="carDetailsSection"
+    class="car-details-section d-none">
+
+    <div class="container">
+
+
+        <!-- BACK -->
+
+        <button
+            type="button"
+            id="backToCars"
+            class="back-button">
+
+            <i class="bi bi-arrow-left me-2"></i>
+            Back to cars
+
+        </button>
+
+
+        <!-- =================================================
+             HERO
+        ================================================= -->
+
+        <div class="car-detail-hero">
+
+
+            <!-- GALLERY -->
+
+            <div class="car-gallery">
+
+                <div class="main-image-wrapper">
+
+                    <img
+                        id="mainCarImage"
+                        class="main-car-image"
+                        src=""
+                        alt="Car">
+
+                    <!-- Previous -->
+
+                    <button
+                        type="button"
+                        id="previousImage"
+                        class="gallery-control previous">
+
+                        <i class="bi bi-chevron-left"></i>
+
+                    </button>
+
+
+                    <!-- Next -->
+
+                    <button
+                        type="button"
+                        id="nextImage"
+                        class="gallery-control next">
+
+                        <i class="bi bi-chevron-right"></i>
+
+                    </button>
+
+
+                    <!-- Gallery actions -->
+
+                    <div class="gallery-actions">
+
+                        <button
+                            type="button"
+                            id="favoriteButton"
+                            class="gallery-action-button">
+
+                            <i class="bi bi-heart"></i>
+
+                        </button>
+
+                    </div>
+
+
+                    <!-- Counter -->
+
+                    <div
+                        id="imageCounter"
+                        class="image-counter">
+
+                        1 / 5
+
+                    </div>
+
+                </div>
+
+
+                <!-- THUMBNAILS -->
+
+                <div
+                    id="galleryThumbnails"
+                    class="gallery-thumbnails">
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 SUMMARY
+            ================================================= -->
+
+            <div class="car-summary-card">
+
+                <h1
+                    id="carTitle"
+                    class="car-title">
+
+                    Car Name
+
+                </h1>
+
+                <p
+                    id="carSubtitle"
+                    class="car-subtitle">
+
+                    Car description
+
+                </p>
+
+
+                <!-- Rating -->
+
+                <div class="car-rating-row">
+
+                    <span
+                        id="carRating"
+                        class="rating-badge">
+
+                        4.5
+
+                    </span>
+
+                    <span class="rating-stars">
+                        ★★★★★
+                    </span>
+
+                    <span
+                        id="carReviews"
+                        class="review-count">
+
+                        100 Reviews
+
+                    </span>
+
+                </div>
+
+
+                <!-- Price -->
+
+                <div
+                    id="carPrice"
+                    class="car-price">
+
+                    ₹7.25 Lakh
+
+                </div>
+
+
+                <!-- Location -->
+
+                <div class="car-location">
+
+                    <i class="bi bi-geo-alt-fill"></i>
+
+                    <span id="carLocation">
+                        Bangalore
+                    </span>
+
+                </div>
+
+
+                <hr class="detail-divider">
+
+
+                <!-- QUICK SPECS -->
+
+                <div class="quick-spec-grid">
+
+                    <div class="quick-spec">
+
+                        <span class="quick-spec-label">
+                            Year
+                        </span>
+
+                        <span
+                            id="carYear"
+                            class="quick-spec-value">
+
+                            2022
+
+                        </span>
+
+                    </div>
+
+
+                    <div class="quick-spec">
+
+                        <span class="quick-spec-label">
+                            Fuel
+                        </span>
+
+                        <span
+                            id="carFuel"
+                            class="quick-spec-value">
+
+                            Petrol
+
+                        </span>
+
+                    </div>
+
+
+                    <div class="quick-spec">
+
+                        <span class="quick-spec-label">
+                            KM Driven
+                        </span>
+
+                        <span
+                            id="carKm"
+                            class="quick-spec-value">
+
+                            32,000 km
+
+                        </span>
+
+                    </div>
+
+
+                    <div class="quick-spec">
+
+                        <span class="quick-spec-label">
+                            Owner
+                        </span>
+
+                        <span
+                            id="carOwner"
+                            class="quick-spec-value">
+
+                            1st Owner
+
+                        </span>
+
+                    </div>
+
+
+                    <div class="quick-spec">
+
+                        <span class="quick-spec-label">
+                            Transmission
+                        </span>
+
+                        <span
+                            id="carTransmission"
+                            class="quick-spec-value">
+
+                            Manual
+
+                        </span>
+
+                    </div>
+
+
+                    <div class="quick-spec">
+
+                        <span class="quick-spec-label">
+                            Registration
+                        </span>
+
+                        <span
+                            id="carRegistration"
+                            class="quick-spec-value">
+
+                            KA-01
+
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- EMI -->
+
+                <div class="emi-preview">
+
+                    <div class="emi-preview-label">
+                        Estimated monthly EMI
+                    </div>
+
+                    <div
+                        id="emiCardValue"
+                        class="emi-preview-value">
+
+                        ₹15,000 / month
+
+                    </div>
+
+                </div>
+
+
+                <!-- CTA -->
+
+                <div class="detail-cta">
+
+                    <button
+                        type="button"
+                        class="primary-cta"
+                        onclick="handleTestDrive()">
+
+                        <i class="bi bi-calendar-check me-1"></i>
+                        Book Test Drive
+
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="secondary-cta"
+                        onclick="openOfferModal()">
+
+                        <i class="bi bi-chat-left-text me-1"></i>
+                        Make an Offer
+
+                    </button>
+
+                </div>
+
+
+                <button
+                    type="button"
+                    class="secondary-cta w-100 mt-2"
+                    onclick="openEMIModal()">
+
+                    <i class="bi bi-calculator me-1"></i>
+                    Calculate EMI
+
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- =================================================
+             DETAIL NAVIGATION
+        ================================================= -->
+
+        <div class="detail-navigation-wrapper">
+
+            <nav class="detail-navigation">
+
+                <a
+                    href="#overview"
+                    class="active">
+
+                    Overview
+
+                </a>
+
+                <a href="#specifications">
+                    Specifications
+                </a>
+
+                <a href="#features">
+                    Features
+                </a>
+
+                <a href="#inspection">
+                    Inspection
+                </a>
+
+                <a href="#similarCars">
+                    Similar Cars
+                </a>
+
+                <a href="#reviews">
+                    Reviews
+                </a>
+
+                <a href="#finance">
+                    Finance
+                </a>
+
+            </nav>
+
+        </div>
+
+
+        <!-- =================================================
+             OVERVIEW
+        ================================================= -->
+
+        <section
+            id="overview"
+            class="detail-content-section">
+
+            <div class="detail-content-card">
+
+                <h2 class="detail-section-title">
+                    Car Overview
+                </h2>
+
+                <p class="detail-section-description">
+                    Everything you need to know before buying this car.
+                </p>
+
+                <p class="overview-text">
+                    This vehicle has been carefully inspected by the
+                    Carivo team. It offers a reliable driving experience,
+                    practical features and excellent value for money.
+                    The car is suitable for daily city driving as well
+                    as longer journeys.
+                </p>
+
+
+                <!-- Highlights -->
+
+                <div class="highlight-grid">
+
+                    <div class="highlight-card">
+
+                        <div class="highlight-icon">
+                            <i class="bi bi-patch-check"></i>
+                        </div>
+
+                        <div class="highlight-title">
+                            Quality Checked
+                        </div>
+
+                        <div class="highlight-text">
+                            Thorough inspection completed
+                        </div>
+
+                    </div>
+
+
+                    <div class="highlight-card">
+
+                        <div class="highlight-icon">
+                            <i class="bi bi-person-check"></i>
+                        </div>
+
+                        <div class="highlight-title">
+                            Single Owner
+                        </div>
+
+                        <div class="highlight-text">
+                            Well maintained vehicle
+                        </div>
+
+                    </div>
+
+
+                    <div class="highlight-card">
+
+                        <div class="highlight-icon">
+                            <i class="bi bi-shield-check"></i>
+                        </div>
+
+                        <div class="highlight-title">
+                            Verified Car
+                        </div>
+
+                        <div class="highlight-text">
+                            Documents verified
+                        </div>
+
+                    </div>
+
+
+                    <div class="highlight-card">
+
+                        <div class="highlight-icon">
+                            <i class="bi bi-tools"></i>
+                        </div>
+
+                        <div class="highlight-title">
+                            Inspection Report
+                        </div>
+
+                        <div class="highlight-text">
+                            Detailed vehicle inspection
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             SPECIFICATIONS
+        ================================================= -->
+
+        <section
+            id="specifications"
+            class="detail-content-section">
+
+            <div class="detail-content-card">
+
+                <h2 class="detail-section-title">
+                    Specifications
+                </h2>
+
+                <p class="detail-section-description">
+                    Detailed information about this vehicle.
+                </p>
+
+
+                <div class="specification-grid">
+
+                    <div class="specification-item">
+
+                        <span class="specification-label">
+                            Manufacturing Year
+                        </span>
+
+                        <span
+                            id="specYear"
+                            class="specification-value">
+
+                            -
+
+                        </span>
+
+                    </div>
+
+
+                    <div class="specification-item">
+
+                        <span class="specification-label">
+                            Fuel Type
+                        </span>
+
+                        <span
+                            id="specFuel"
+                            class="specification-value">
+
+                            -
+
+                        </span>
+
+                    </div>
+
+
+                    <div class="specification-item">
+
+                        <span class="specification-label">
+                            Transmission
+                        </span>
+
+                        <span
+                            id="specTransmission"
+                            class="specification-value">
+
+                            -
+
+                        </span>
+
+                    </div>
+
+
+                    <div class="specification-item">
+
+                        <span class="specification-label">
+                            KM Driven
+                        </span>
+
+                        <span
+                            id="specKm"
+                            class="specification-value">
+
+                            -
+
+                        </span>
+
+                    </div>
+
+
+                    <div class="specification-item">
+
+                        <span class="specification-label">
+                            Engine
+                        </span>
+
+                        <span
+                            id="carEngine"
+                            class="specification-value">
+
+                            -
+
+                        </span>
+
+                    </div>
+
+
+                    <div class="specification-item">
+
+                        <span class="specification-label">
+                            Power
+                        </span>
+
+                        <span
+                            id="carPower"
+                            class="specification-value">
+
+                            -
+
+                        </span>
+
+                    </div>
+
+
+                    <div class="specification-item">
+
+                        <span class="specification-label">
+                            Colour
+                        </span>
+
+                        <span
+                            id="carColor"
+                            class="specification-value">
+
+                            -
+
+                        </span>
+
+                    </div>
+
+
+                    <div class="specification-item">
+
+                        <span class="specification-label">
+                            Owner
+                        </span>
+
+                        <span
+                            id="specOwner"
+                            class="specification-value">
+
+                            -
+
+                        </span>
+
+                    </div>
+
+
+                    <div class="specification-item">
+
+                        <span class="specification-label">
+                            Registration
+                        </span>
+
+                        <span
+                            id="specRegistration"
+                            class="specification-value">
+
+                            -
+
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             FEATURES
+        ================================================= -->
+
+        <section
+            id="features"
+            class="detail-content-section">
+
+            <div class="detail-content-card">
+
+                <h2 class="detail-section-title">
+                    Features
+                </h2>
+
+                <p class="detail-section-description">
+                    Features available in this vehicle.
+                </p>
+
+
+                <div
+                    id="featuresContainer"
+                    class="features-grid">
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             INSPECTION
+        ================================================= -->
+
+        <section
+            id="inspection"
+            class="detail-content-section">
+
+            <div class="detail-content-card">
+
+                <h2 class="detail-section-title">
+                    Carivo Inspection
+                </h2>
+
+                <p class="detail-section-description">
+                    Our inspection report helps you understand
+                    the condition of the vehicle.
+                </p>
+
+
+                <div class="inspection-header">
+
+                    <div>
+
+                        <div
+                            id="inspectionScore"
+                            class="inspection-score">
+
+                            92 / 100
+
+                        </div>
+
+                        <div class="inspection-score-label">
+                            Overall Inspection Score
+                        </div>
+
+                    </div>
+
+                    <i
+                        class="bi bi-shield-check"
+                        style="font-size: 2.5rem; color: #12b76a;">
+                    </i>
+
+                </div>
+
+
+                <div class="inspection-grid">
+
+
+                    <!-- Exterior -->
+
+                    <div class="inspection-item">
+
+                        <div class="inspection-item-header">
+
+                            <span class="inspection-item-title">
+                                Exterior
+                            </span>
+
+                            <span
+                                id="inspectionExterior"
+                                class="inspection-item-score">
+
+                                92%
+
+                            </span>
+
+                        </div>
+
+                        <div class="inspection-progress">
+
+                            <div
+                                id="inspectionExteriorBar"
+                                class="inspection-progress-bar"
+                                style="width:92%;">
+                            </div>
+
+                        </div>
+
+                        <p
+                            id="inspectionExteriorText"
+                            class="inspection-description">
+
+                            Exterior condition checked.
+
+                        </p>
+
+                    </div>
+
+
+                    <!-- Interior -->
+
+                    <div class="inspection-item">
+
+                        <div class="inspection-item-header">
+
+                            <span class="inspection-item-title">
+                                Interior
+                            </span>
+
+                            <span
+                                id="inspectionInterior"
+                                class="inspection-item-score">
+
+                                92%
+
+                            </span>
+
+                        </div>
+
+                        <div class="inspection-progress">
+
+                            <div
+                                id="inspectionInteriorBar"
+                                class="inspection-progress-bar"
+                                style="width:92%;">
+                            </div>
+
+                        </div>
+
+                        <p
+                            id="inspectionInteriorText"
+                            class="inspection-description">
+
+                            Interior condition checked.
+
+                        </p>
+
+                    </div>
+
+
+                    <!-- Engine -->
+
+                    <div class="inspection-item">
+
+                        <div class="inspection-item-header">
+
+                            <span class="inspection-item-title">
+                                Engine
+                            </span>
+
+                            <span
+                                id="inspectionEngine"
+                                class="inspection-item-score">
+
+                                92%
+
+                            </span>
+
+                        </div>
+
+                        <div class="inspection-progress">
+
+                            <div
+                                id="inspectionEngineBar"
+                                class="inspection-progress-bar"
+                                style="width:92%;">
+                            </div>
+
+                        </div>
+
+                        <p
+                            id="inspectionEngineText"
+                            class="inspection-description">
+
+                            Engine condition checked.
+
+                        </p>
+
+                    </div>
+
+
+                    <!-- Tyres -->
+
+                    <div class="inspection-item">
+
+                        <div class="inspection-item-header">
+
+                            <span class="inspection-item-title">
+                                Tyres
+                            </span>
+
+                            <span
+                                id="inspectionTyres"
+                                class="inspection-item-score">
+
+                                92%
+
+                            </span>
+
+                        </div>
+
+                        <div class="inspection-progress">
+
+                            <div
+                                id="inspectionTyresBar"
+                                class="inspection-progress-bar"
+                                style="width:92%;">
+                            </div>
+
+                        </div>
+
+                        <p
+                            id="inspectionTyresText"
+                            class="inspection-description">
+
+                            Tyre condition checked.
+
+                        </p>
+
+                    </div>
+
+
+                    <!-- Electrical -->
+
+                    <div class="inspection-item">
+
+                        <div class="inspection-item-header">
+
+                            <span class="inspection-item-title">
+                                Electrical
+                            </span>
+
+                            <span
+                                id="inspectionElectrical"
+                                class="inspection-item-score">
+
+                                92%
+
+                            </span>
+
+                        </div>
+
+                        <div class="inspection-progress">
+
+                            <div
+                                id="inspectionElectricalBar"
+                                class="inspection-progress-bar"
+                                style="width:92%;">
+                            </div>
+
+                        </div>
+
+                        <p
+                            id="inspectionElectricalText"
+                            class="inspection-description">
+
+                            Electrical systems checked.
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             SIMILAR CARS
+        ================================================= -->
+
+        <section
+            id="similarCars"
+            class="detail-content-section">
+
+            <div class="detail-content-card">
+
+                <h2 class="detail-section-title">
+                    Similar Cars
+                </h2>
+
+                <p class="detail-section-description">
+                    You may also like these cars.
+                </p>
+
+
+                <div
+                    id="similarCarsContainer"
+                    class="similar-cars-grid">
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             REVIEWS
+        ================================================= -->
+
+        <section
+            id="reviews"
+            class="detail-content-section">
+
+            <div class="detail-content-card">
+
+                <h2 class="detail-section-title">
+                    Customer Reviews
+                </h2>
+
+                <p class="detail-section-description">
+                    See what customers think about this vehicle.
+                </p>
+
+
+                <div class="review-summary">
+
+                    <div
+                        id="reviewScore"
+                        class="review-summary-score">
+
+                        4.6
+
+                    </div>
+
+                    <div>
+
+                        <div class="review-summary-stars">
+                            ★★★★★
+                        </div>
+
+                        <div class="review-summary-text">
+                            Based on customer reviews
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div id="reviewList">
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             FINANCE / EMI
+        ================================================= -->
+
+        <section
+            id="finance"
+            class="detail-content-section">
+
+            <div class="detail-content-card emi-card">
+
+                <h2 class="detail-section-title">
+                    Finance Your Car
+                </h2>
+
+                <p class="detail-section-description">
+                    Check an estimated monthly EMI for this car.
+                </p>
+
+
+                <div class="emi-result-box">
+
+                    <div class="emi-result-label">
+                        Estimated Monthly EMI
+                    </div>
+
+                    <div
+                        id="emiCardValue"
+                        class="emi-result-value">
+
+                        ₹15,000 / month
+
+                    </div>
+
+
+                    <div class="emi-result-grid">
+
+                        <div class="emi-result-item">
+
+                            <span>
+                                Loan Amount
+                            </span>
+
+                            <span>
+                                <span id="emiLoanAmount">
+                                    ₹0
+                                </span>
+                            </span>
+
+                        </div>
+
+
+                        <div class="emi-result-item">
+
+                            <span>
+                                Interest Rate
+                            </span>
+
+                            <span>
+                                10.99%
+                            </span>
+
+                        </div>
+
+
+                        <div class="emi-result-item">
+
+                            <span>
+                                Tenure
+                            </span>
+
+                            <span>
+                                60 Months
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <button
+                    type="button"
+                    class="primary-cta mt-3"
+                    onclick="openEMIModal()">
+
+                    <i class="bi bi-calculator me-1"></i>
+                    Calculate EMI
+
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             FINAL CTA
+        ================================================= -->
+
+        <section class="final-cta-section">
+
+            <div class="final-cta-content">
+
+                <div>
+
+                    <h2 class="final-cta-title">
+                        Interested in this car?
+                    </h2>
+
+                    <p class="final-cta-text">
+                        Book a test drive or make an offer today.
+                    </p>
+
+                </div>
+
+
+                <div class="final-cta-buttons">
+
+                    <button
+                        type="button"
+                        class="primary-cta"
+                        onclick="handleTestDrive()">
+
+                        Book Test Drive
+
+                    </button>
+
+                    <button
+                        type="button"
+                        class="secondary-cta"
+                        onclick="openOfferModal()">
+
+                        Make an Offer
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer
+    id="about"
+    class="carivo-footer">
+
+    <div class="container">
+
+        <div class="row g-4">
+
+            <div class="col-lg-6">
+
+                <div class="footer-brand">
+                    Car<span>ivo</span>
+                </div>
+
+                <p class="footer-description">
+                    Carivo makes buying quality used cars simple,
+                    transparent and convenient.
+                </p>
+
+            </div>
+
+
+            <div class="col-6 col-lg-3">
+
+                <div class="footer-heading">
+                    Quick Links
+                </div>
+
+                <ul class="footer-links">
+
+                    <li>
+                        <a href="#cars">
+                            Cars
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#finance">
+                            Finance
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#about">
+                            About
+                        </a>
+                    </li>
+
+                </ul>
+
+            </div>
+
+
+            <div class="col-6 col-lg-3">
+
+                <div class="footer-heading">
+                    Account
+                </div>
+
+                <ul class="footer-links">
+
+                    <li>
+                        <a href="login.html">
+                            Login
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="login.html">
+                            Register
+                        </a>
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+
+        <div class="footer-bottom">
+
+            © 2026 Carivo. All rights reserved.
+
+        </div>
+
+    </div>
+
+</footer>
+
+
+<!-- =====================================================
+     LOGIN REQUIRED MODAL
+===================================================== -->
+
+<div
+    class="modal fade"
+    id="loginRequiredModal"
+    tabindex="-1">
+
+    <div class="modal-dialog modal-dialog-centered">
+
+        <div class="modal-content">
+
+            <div class="modal-body">
+
+                <div class="login-required-content">
+
+                    <div class="login-required-icon">
+
+                        <i class="bi bi-lock"></i>
+
+                    </div>
+
+                    <h4>
+                        Login Required
+                    </h4>
+
+                    <p>
+                        Please login to continue with booking
+                        your test drive.
+                    </p>
+
+                    <button
+                        type="button"
+                        class="modal-primary-button"
+                        onclick="goToLogin()">
+
+                        Login Now
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     TEST DRIVE MODAL
+===================================================== -->
+
+<div
+    class="modal fade"
+    id="testDriveModal"
+    tabindex="-1">
+
+    <div class="modal-dialog modal-dialog-centered">
+
+        <div class="modal-content">
+
+            <div class="modal-header">
+
+                <h5 class="modal-title">
+                    Book Test Drive
+                </h5>
+
+                <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="modal">
+                </button>
+
+            </div>
+
+
+            <div class="modal-body">
+
+                <form id="testDriveForm">
+
+                    <div class="mb-3">
+
+                        <label
+                            class="form-label"
+                            for="testDriveName">
+
+                            Full Name
+
+                        </label>
+
+                        <input
+                            type="text"
+                            id="testDriveName"
+                            class="form-control"
+                            required>
+
+                    </div>
+
+
+                    <div class="mb-3">
+
+                        <label
+                            class="form-label"
+                            for="testDrivePhone">
+
+                            Phone Number
+
+                        </label>
+
+                        <input
+                            type="tel"
+                            id="testDrivePhone"
+                            class="form-control"
+                            required>
+
+                    </div>
+
+
+                    <div class="row">
+
+                        <div class="col-md-6 mb-3">
+
+                            <label
+                                class="form-label"
+                                for="testDriveDate">
+
+                                Date
+
+                            </label>
+
+                            <input
+                                type="date"
+                                id="testDriveDate"
+                                class="form-control"
+                                required>
+
+                        </div>
+
+
+                        <div class="col-md-6 mb-3">
+
+                            <label
+                                class="form-label"
+                                for="testDriveTime">
+
+                                Time
+
+                            </label>
+
+                            <select
+                                id="testDriveTime"
+                                class="form-select"
+                                required>
+
+                                <option value="">
+                                    Select time
+                                </option>
+
+                                <option value="10:00 AM">
+                                    10:00 AM
+                                </option>
+
+                                <option value="12:00 PM">
+                                    12:00 PM
+                                </option>
+
+                                <option value="2:00 PM">
+                                    2:00 PM
+                                </option>
+
+                                <option value="4:00 PM">
+                                    4:00 PM
+                                </option>
+
+                                <option value="6:00 PM">
+                                    6:00 PM
+                                </option>
+
+                            </select>
+
+                        </div>
+
+                    </div>
+
+
+                    <div
+                        id="testDriveSuccess"
+                        class="success-message d-none">
+
+                        <i class="bi bi-check-circle me-1"></i>
+
+                        Test drive request submitted successfully!
+
+                    </div>
+
+
+                    <button
+                        type="submit"
+                        class="modal-primary-button w-100 mt-3">
+
+                        Confirm Test Drive
+
+                    </button>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     OFFER MODAL
+===================================================== -->
+
+<div
+    class="modal fade"
+    id="offerModal"
+    tabindex="-1">
+
+    <div class="modal-dialog modal-dialog-centered">
+
+        <div class="modal-content">
+
+            <div class="modal-header">
+
+                <h5 class="modal-title">
+                    Make an Offer
+                </h5>
+
+                <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="modal">
+                </button>
+
+            </div>
+
+
+            <div class="modal-body">
+
+                <form id="offerForm">
+
+                    <div class="mb-3">
+
+                        <label
+                            class="form-label"
+                            for="offerName">
+
+                            Full Name
+
+                        </label>
+
+                        <input
+                            type="text"
+                            id="offerName"
+                            class="form-control"
+                            required>
+
+                    </div>
+
+
+                    <div class="mb-3">
+
+                        <label
+                            class="form-label"
+                            for="offerPhone">
+
+                            Phone Number
+
+                        </label>
+
+                        <input
+                            type="tel"
+                            id="offerPhone"
+                            class="form-control"
+                            required>
+
+                    </div>
+
+
+                    <div class="mb-3">
+
+                        <label
+                            class="form-label"
+                            for="offerMessage">
+
+                            Your Offer / Message
+
+                        </label>
+
+                        <textarea
+                            id="offerMessage"
+                            class="form-control"
+                            placeholder="Enter your offer amount or message..."
+                            required>
+                        </textarea>
+
+                    </div>
+
+
+                    <div
+                        id="offerSuccess"
+                        class="success-message d-none">
+
+                        <i class="bi bi-check-circle me-1"></i>
+
+                        Your offer has been submitted successfully!
+
+                    </div>
+
+
+                    <button
+                        type="submit"
+                        class="modal-primary-button w-100 mt-3">
+
+                        Submit Offer
+
+                    </button>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     EMI MODAL
+===================================================== -->
+
+<div
+    class="modal fade"
+    id="emiModal"
+    tabindex="-1">
+
+    <div class="modal-dialog modal-dialog-centered">
+
+        <div class="modal-content">
+
+            <div class="modal-header">
+
+                <h5 class="modal-title">
+                    EMI Calculator
+                </h5>
+
+                <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="modal">
+                </button>
+
+            </div>
+
+
+            <div class="modal-body">
+
+                <div class="mb-3">
+
+                    <label class="form-label">
+                        Car Price
+                    </label>
+
+                    <input
+                        type="text"
+                        id="emiCarPrice"
+                        class="form-control"
+                        readonly>
+
+                </div>
+
+
+                <div class="mb-3">
+
+                    <label
+                        class="form-label"
+                        for="emiDownPayment">
+
+                        Down Payment (%)
+
+                    </label>
+
+                    <input
+                        type="number"
+                        id="emiDownPayment"
+                        class="form-control"
+                        value="20"
+                        min="0"
+                        max="90">
+
+                </div>
+
+
+                <div class="mb-3">
+
+                    <label
+                        class="form-label"
+                        for="emiInterest">
+
+                        Interest Rate (%)
+
+                    </label>
+
+                    <input
+                        type="number"
+                        id="emiInterest"
+                        class="form-control"
+                        value="10.99"
+                        min="1"
+                        max="30"
+                        step="0.01">
+
+                </div>
+
+
+                <div class="mb-3">
+
+                    <label
+                        class="form-label"
+                        for="emiTenure">
+
+                        Tenure
+
+                    </label>
+
+                    <select
+                        id="emiTenure"
+                        class="form-select">
+
+                        <option value="12">
+                            12 Months
+                        </option>
+
+                        <option value="24">
+                            24 Months
+                        </option>
+
+                        <option value="36">
+                            36 Months
+                        </option>
+
+                        <option value="48">
+                            48 Months
+                        </option>
+
+                        <option value="60" selected>
+                            60 Months
+                        </option>
+
+                        <option value="72">
+                            72 Months
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <button
+                    type="button"
+                    class="modal-primary-button w-100"
+                    onclick="calculateEMI()">
+
+                    Calculate EMI
+
+                </button>
+
+
+                <div class="emi-result-box mt-4">
+
+                    <div class="emi-result-label">
+                        Monthly EMI
+                    </div>
+
+                    <div
+                        id="monthlyEMI"
+                        class="emi-result-value">
+
+                        ₹0
+
+                    </div>
+
+
+                    <div class="emi-result-grid">
+
+                        <div class="emi-result-item">
+
+                            <span>
+                                Loan Amount
+                            </span>
+
+                            <span id="loanAmount">
+                                ₹0
+                            </span>
+
+                        </div>
+
+
+                        <div class="emi-result-item">
+
+                            <span>
+                                Total Interest
+                            </span>
+
+                            <span id="totalInterest">
+                                ₹0
+                            </span>
+
+                        </div>
+
+
+                        <div class="emi-result-item">
+
+                            <span>
+                                Total Amount
+                            </span>
+
+                            <span id="totalAmount">
+                                ₹0
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     FINANCE LOGIN MODAL
+===================================================== -->
+
+<div
+    class="modal fade"
+    id="financeLoginModal"
+    tabindex="-1">
+
+    <div class="modal-dialog modal-dialog-centered">
+
+        <div class="modal-content">
+
+            <div class="modal-body">
+
+                <div class="login-required-content">
+
+                    <div class="login-required-icon">
+
+                        <i class="bi bi-wallet2"></i>
+
+                    </div>
+
+                    <h4>
+                        Login to Continue
+                    </h4>
+
+                    <p>
+                        Please login to access Carivo finance options.
+                    </p>
+
+                    <button
+                        type="button"
+                        class="modal-primary-button"
+                        onclick="goToLogin()">
+
+                        Login Now
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     FULLSCREEN IMAGE MODAL
+===================================================== -->
+
+<div
+    class="modal fade"
+    id="fullscreenGalleryModal"
+    tabindex="-1">
+
+    <div class="modal-dialog modal-fullscreen">
+
+        <div class="modal-content">
+
+            <div class="modal-body">
+
+                <div class="fullscreen-gallery-wrapper">
+
+                    <button
+                        type="button"
+                        class="fullscreen-close"
+                        data-bs-dismiss="modal">
+
+                        <i class="bi bi-x-lg"></i>
+
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="fullscreen-gallery-control previous"
+                        onclick="changeFullscreenImage(-1)">
+
+                        <i class="bi bi-chevron-left"></i>
+
+                    </button>
+
+
+                    <img
+                        id="fullscreenGalleryImage"
+                        class="fullscreen-gallery-image"
+                        src=""
+                        alt="Car">
+
+                    <button
+                        type="button"
+                        class="fullscreen-gallery-control next"
+                        onclick="changeFullscreenImage(1)">
+
+                        <i class="bi bi-chevron-right"></i>
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     BOOTSTRAP JS
+===================================================== -->
+
+<script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
+</script>
+
+
+<!-- =====================================================
+     CARIVO JS
+===================================================== -->
+
+<script src="js/car-details.js"></script>
+
+</body>
+
+</html>
